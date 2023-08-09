@@ -1,0 +1,14 @@
+ <% form_with model: @route ,local: true do |f| %>
+  <div>
+    <%= f.label :fromEnter "Destination_city" %><br>
+    <%= f.text_field :from %>
+  </div>
+
+  <div>
+    <%= f.label :to,"Enter Destination_city" %><br>
+    <%= f.text_field :to %>
+  </div>
+
+  <div>
+    <%= f.submit "save route" %>
+  </div>

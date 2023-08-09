@@ -1,0 +1,28 @@
+
+<%= button_to "signout",destroy_user_session_path,method: :delete %>
+
+<%= render  "buses/_search_form" %>
+
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Route ID</th>
+            <th>Starting From</th>
+            <th>Destination</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @routes.each do |route| %>
+            <tr>
+              <td><%= route.id %></td>
+              <td><%= route.from %></td>
+              <td><%= route.to %></td>
+              
+                
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  

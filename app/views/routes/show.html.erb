@@ -1,0 +1,43 @@
+<% if @route.buses.any? %>
+  <h3>Total Buses in this Route (<%= @route.buses.count %>)</h3>
+  
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Bus Id</th>
+          <th>Name</th>
+          <th>Bus Number</th>
+          <th>Bus Type</th>
+          <th>Bus Price</th>
+          <th>Seat Availability</th>
+          <th>Pickup Point</th>
+          <th>Drop Point</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @buses.each do |bus| %>
+          <tr>
+            <td><%= bus.id %></td>
+            <td><%= bus.name %></td>
+            <td><%= bus.number %></td>
+            <td><%= bus.bustype %></td>
+            <td><%= bus.price %></td>
+            <td><%= bus.seats %></td>
+      
+            <td><%= bus.departure_time %></td>
+            <td><%= bus.arrival_time %></td>
+          
+            
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+<% else %>
+  <h1>No Bus found in this Route</h1>
+<% end %>
