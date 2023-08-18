@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+  before_action :authenticate_user! 
   before_action :set_id_for_all,only: %i[show edit update destroy]
   
   def index
@@ -33,12 +34,14 @@ class RoutesController < ApplicationController
       render :edit
     end  
   end
+  
 
   def destroy
     @route.destroy
     flash[:alert] ="successfully updated"
     redirect_to @route
   end
+  
   
   private
     def set_id_for_all

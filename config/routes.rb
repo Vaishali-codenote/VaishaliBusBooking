@@ -6,9 +6,22 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "routes#index"
   get "buses/search"
-  get"buses/all_buses"
-  resources :routes do
-    resources :buses
-  end    
+
+  resources :routes
+  resources :tickets
+  resources :transactions, only: [:create]
+  resources :buses do
+    collection do
+      get :city_suggestions
+    end
+    resources :tickets
+  end
+  get '/autosuggestion', to: 'buses#autocomplete'
+  
+
+
+
+
+
    resources :schedules
 end

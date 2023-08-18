@@ -1,0 +1,68 @@
+<table >
+  <tbody>
+          <% @tickets.each do |t| %>  
+           <tr>
+                <th>Ticket ID:</th>
+                <td><%= t.id %></td>
+              </tr>
+              <tr>
+                <th>Bus ID:</th>
+                <td><%= t.bus_id %></td>
+              </tr>
+              <tr>
+                <th>Bus Route </th>
+                <td><%= t.bus.starding_city%> to <%= t.bus.destination_city%>  </td>
+              </tr>
+              <tr>
+                <th>Passenger Name:</th>
+                <td><%= t.name %></td>
+              </tr>
+              <tr>
+                <th>Passenger Age:</th>
+                <td><%= t.age %></td>
+              </tr>
+              <tr>
+                <th>Passenger Sex:</th>
+                <td><%= t.sex %></td>
+              </tr>
+              <tr>
+                <th>Bus Fare:</th>
+                <td><%= t.tot_amount%></td>
+              </tr>
+              
+              <tr>
+                <th>Journey Date:</th>
+                <td><%= t.date %></td>
+              </tr>
+              <tr>
+                <th>Bus Departure  Time:</th>
+                <td><%=  DateTime.parse(t.bus.despeture_time.in_time_zone("Kolkata").strftime("%r")).strftime("%r")  %></td>
+              </tr>
+              <tr>
+                <th>Bus Arrival Time:</th>
+                <td><%= DateTime.parse(t.bus.arrival_time.in_time_zone("Kolkata").strftime("%r")).strftime("%r")%></td>
+              </tr>
+              <tr>
+                <th>Ticket Created At:</th>
+                <td><%= t.created_at %></td>
+              </tr>
+              <tr>
+                <th>Ticket Updated At:</th>
+                <td><%= t.created_at %></td>
+              </tr>
+              <tr>
+                <th>Ticket Status:</th>
+                <td><%= t.status %></td>
+              </tr>
+            
+              
+          <%end%>
+            </tbody>
+          </table>
+    
+  
+        <%=time = Time.now.to_s 
+      time = DateTime.parse(time).strftime("%d/%m/%Y  %H:%M") %>
+      </div>
+    </div>
+  </div>

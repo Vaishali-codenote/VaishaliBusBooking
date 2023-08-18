@@ -1,0 +1,122 @@
+<h1> Enter Passenger Details </h1>
+
+  
+  <%= form_with model: [@bus,@ticket] do |f| %>
+    
+    <%= f.label :name, "Enter Passenger Name" %>
+    <%= f.text_field :name%>
+    <%= f.label :age,"Enter Passenger Age" %>
+    <%= f.text_field :age%>
+    <%= f.label :sex,"Enter Passenger Sex "%>
+    <%= f.select :sex,  ['Male', 'Female', 'Other']%>
+    <%#= f.label :date, "Journey date" %>
+    <%#= f.date_field :date, value: params[:date] ,readOnly: true%>
+    <%= f.label :Seats, class: 'form-label' %>
+    <%= f.number_field :seat_booked ,id: 'seat_booked'%>
+    <%= f.hidden_field :bus_id, value: @bus.id %>
+      <%= f.hidden_field :date, value: params[:date]%>
+    <%= f.hidden_field :wallet_id, value: @wallet.id %>
+    <%= f.hidden_field :price, value: @bus.price%>
+    <%= f.hidden_field :departure_time, value: @bus.despeture_time%>
+    <%= f.hidden_field :arrival_time, value: @bus.arrival_time %>
+    <%=f.label :number_field, "Price", class: "ticket-price"%>
+    <input type="number" id="ticket_seat_booked" value="<%=@bus.price%>">
+    
+    <%= f.label :tot_amount,"tot_amount"  %>
+   <input class="w3-input w3-border" name="tot_amount" id="tot_amount" type="text" readonly>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Create Ticket
+  </button>
+
+
+<!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation popup</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+            
+              <label >User Name</label>
+              <input type="text"  value="<%=current_user.name%>">
+            </div>
+            <label >  amount</label>
+            <input class="w3-input w3-border" name="tot_amount1" id="tot_amount1" type="text" readonly>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" id="confirmButton" class="btn btn-primary">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<script>
+  
+  const seatBookedInput = document.getElementById('seat_booked');
+  const seatBookedPriceInput = document.getElementById('ticket_seat_booked');
+  const totalAmountInput = document.getElementById('tot_amount');
+   const modalAmountInput = document.getElementById('tot_amount1'); 
+
+  
+  function calculateTotalAmount() {
+    const seatBooked = parseInt(seatBookedInput.value);
+    const seatBookedPrice = parseFloat(seatBookedPriceInput.value);
+    const totalAmount = seatBooked * seatBookedPrice;
+    debugger
+    totalAmountInput.value = totalAmount.toFixed(2);
+    modalAmountInput.value = totalAmount.toFixed(2);
+  }
+
+    seatBookedInput.addEventListener('input', calculateTotalAmount);
+
+
+   const confirmButton = document.getElementById('confirmButton');
+
+
+
+  
+
+
+
+  confirmButton.addEventListener('click', function() {
+    const totalAmount = parseFloat(totalAmountInput.value);
+
+    fetch('/transactions', { 
+     method: 'POST',
+      headers: {
+        'X-CSRF-Token': '<%= form_authenticity_token %>',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ tot_amount: totalAmount }) 
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+      
+        window.location.href = '<%= tickets_path %>';
+      } else {
+        
+        alert(data.error);
+      }
+    })
+    .catch(error => {
+      
+      console.error('Error creating transaction:', error);
+    });
+  });
+</script>
+
+      
+
+
+
+
+
+
+

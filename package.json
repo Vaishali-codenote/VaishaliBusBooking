@@ -1,0 +1,28 @@
+{
+  "name": "vaishalibusbooking",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaishali-codenote/VaishaliBusBooking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vaishali-codenote/VaishaliBusBooking/issues"
+  },
+  "homepage": "https://github.com/Vaishali-codenote/VaishaliBusBooking#readme",
+  "dependencies": {
+    "jquery": "^3.7.0",
+    "yarn": "^1.22.19"
+  }
+}

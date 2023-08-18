@@ -1,5 +1,6 @@
 class Bus < ApplicationRecord
+  validates :name, :number, presence: true, uniqueness: true
+
   has_many :tickets,dependent: :destroy
-  has_many :schedules
-  has_many :routes,:through=> :schedules
+  has_many :routes
 end

@@ -1,4 +1,5 @@
 class Route < ApplicationRecord
-  has_many :schedules
-  has_many :buses,:through=> :schedules,dependent: :destroy
+  validates :from, :to, presence: true
+  belongs_to :bus
+  
 end

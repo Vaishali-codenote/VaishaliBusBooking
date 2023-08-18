@@ -1,6 +1,6 @@
-
 class BusesController < ApplicationController
-    
+ include Searchable
+  
   def index
     @route = Route.find(params[:route_id])
     @buses = @route.buses.all
@@ -45,18 +45,22 @@ class BusesController < ApplicationController
   end
 
   def search
-    @buses = Bus.all
-    if params[:from].present?
-      @buses = @buses.where(starting_city: params[:from])
-    end
-    if params[:to].present?
-      @buses = @buses.where(destination_city: params[:to])
-    end
-    if params[:dates].present?
-     # @schedule = Schedule.all
-      @schedule = Schedule.where(dates: params[:dates])
-    end
+    
+    @my_data = searched
   end
+  
+  def city_suggestions
+    term = params[:term]
+    cities = City.where('name ILIKE ?', "%#{term}%").pluck(:name)
+    render json: cities
+  end
+  
+  def autocomplete
+    query = params[:term] # The search query sent by autocomplete
+    suggestions = City.where('name LIKE ?', "%#{query}%").pluck(:name)
+    render json: suggestions
+  end
+
 
   private
 
@@ -64,3 +68,58 @@ class BusesController < ApplicationController
     params.require(:bus).permit(:starting_city, :destination_city, :name, :number, :bustype, :price, :seats, :drop, :pickup, :departure_time, :arrival_time)
   end
 end
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #<td><%=bus.despeture_time.strftime('%H:%M') %></td>
+              #<td><%= bus.arrival_time.strftime('%H:%M') %></td>

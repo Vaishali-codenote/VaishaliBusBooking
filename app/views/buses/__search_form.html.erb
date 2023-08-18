@@ -1,15 +1,38 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<h2>Welcome to vaishalibussystem</h2>
 
-    <h2>welcome to vaishalibussystem</h2>
-  
-  <div >
-    <%= form_tag buses_search_path, method: :get do %>
-      <%= label_tag :from, "Starting City" %>
-      <%= text_field_tag :from, params[:from] %>
-      <%= label_tag :to, "Destination City" %>
-      <%= text_field_tag :to, params[:to] %>
-      <%= label_tag :date, "Date of Travel" %>
-      <%= text_field_tag :date, params[:date], type: "date" %>
-      <%= submit_tag "Search"%>
-    <% end %>
-  </div>
-  
+ <div>
+  <%= form_tag buses_search_path, method: :get, remote: true do %>
+    <%= label_tag :from, "Starting City" %>
+    <%= text_field_tag :from, params[:from], id: 'city-input1' %><br><br>
+    <ul id="suggestion-list"></ul>
+    
+    <%= label_tag :to, "Destination City" %>
+    <%= text_field_tag :to, params[:to], id: 'city-input2' %><br><br>
+    <ul id="suggestion-list"></ul>
+    
+    <%= label_tag :date, "Date of Travel" %>
+    <%= text_field_tag :date, params[:date], type: "date" %>
+    
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function() {
+    function configureAutocomplete(inputId) {
+      $(inputId).autocomplete({
+        source: '/autosuggestion',
+        minLength: 1,
+        select: function(event, ui) {
+          $(inputId).val(ui.item.label); // Display label in input
+          return false; // Prevent default behavior
+        }
+      });
+    }
+
+    configureAutocomplete('#city-input1');
+    configureAutocomplete('#city-input2');
+  });
+</script>
