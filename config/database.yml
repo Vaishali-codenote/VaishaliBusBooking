@@ -7,12 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: postgresql
+  database: bus-system
 
 test:
   <<: *default
-  database: postgresql
+  database: bus-system
 
 production:
   <<: *default
-  database: postgresql
+  database: bus-system
