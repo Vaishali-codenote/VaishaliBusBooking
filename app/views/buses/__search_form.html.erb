@@ -1,9 +1,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<h2>Welcome to vaishalibussystem</h2>
-
- <div>
+<h2>Welcome to Travel Agency</h2>
+<div>
   <%= form_tag buses_search_path, method: :get, remote: true do %>
     <%= label_tag :from, "Starting City" %>
     <%= text_field_tag :from, params[:from], id: 'city-input1' %><br><br>
