@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-#Bus.create(starding_city:'indore',destination_city:'bhopal',despeture_time: Time.parse("20:30") , bus_type:'AC',arrival_time: Time.parse("24:30"), name:'bakshi', number:'3452', total_seats: 50)
- #Route.create(from:'indore',to:'bhopal')
 
+Bus.create(starting_city: 'indore', destination_city:'bhopal', despeture_time: Time.parse("20:30"), bus_type: 'AC', arrival_time: Time.parse("24:30"), name: 'bakshi', number: '3452', total_seats: 50)
+
+Route.create(from: 'indore', to:'bhopal')

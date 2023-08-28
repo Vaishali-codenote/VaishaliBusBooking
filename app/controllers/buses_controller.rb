@@ -45,7 +45,6 @@ class BusesController < ApplicationController
   end
 
   def search
-    
     @my_data = searched
   end
   
@@ -61,65 +60,9 @@ class BusesController < ApplicationController
     render json: suggestions
   end
 
-
   private
 
   def bus_params
     params.require(:bus).permit(:starting_city, :destination_city, :name, :number, :bustype, :price, :seats, :drop, :pickup, :departure_time, :arrival_time)
   end
 end
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  #<td><%=bus.despeture_time.strftime('%H:%M') %></td>
-              #<td><%= bus.arrival_time.strftime('%H:%M') %></td>

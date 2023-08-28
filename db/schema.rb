@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_082211) do
   enable_extension "plpgsql"
 
   create_table "buses", force: :cascade do |t|
-    t.string "starding_city"
+    t.string "starting_city"
     t.string "destination_city"
     t.string "despeture_time"
     t.string "bus_type"
@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_082211) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.decimal "balance"
+    t.float "balance"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

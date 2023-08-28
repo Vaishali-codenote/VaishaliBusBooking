@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  starding_city: MyString
+  starting_city: MyString
   destination_city: MyString
   despeture_time: MyString
   bus_type: MyString
@@ -13,7 +13,7 @@ one:
   available_seats: 1
 
 two:
-  starding_city: MyString
+  starting_city: MyString
   destination_city: MyString
   despeture_time: MyString
   bus_type: MyString

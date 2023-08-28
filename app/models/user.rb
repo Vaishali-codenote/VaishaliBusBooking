@@ -8,8 +8,7 @@ class User < ApplicationRecord
   has_one :wallet
   after_create :user_create_mail
 
-   def user_create_mail
-    
+  def user_create_mail
     UserWelcomeJob.perform_later(self)
-   end
+  end
 end

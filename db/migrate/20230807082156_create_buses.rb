@@ -1,7 +1,7 @@
 class CreateBuses < ActiveRecord::Migration[7.0]
   def change
     create_table :buses do |t|
-      t.string :starding_city
+      t.string :starting_city
       t.string :destination_city
       t.string :despeture_time
       t.string :bus_type
